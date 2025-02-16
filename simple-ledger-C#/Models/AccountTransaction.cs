@@ -1,18 +1,22 @@
 ﻿namespace simple_ledger_C_.Models
 {
-    public abstract class AccountTransaction
+    public class AccountTransaction
     {
         public Guid Id { get; }
         public decimal Amount { get; }
         public DateTime Date { get; }
 
-        protected AccountTransaction(decimal amount)
+        public AccountTransaction(decimal amount)
         {
             Id = Guid.NewGuid();
             Amount = amount;
             Date = DateTime.UtcNow;
         }
 
-        public abstract decimal Apply();
+        /// <summary>
+        /// Returns the effect of this transaction on the user's balance.
+        /// e.g. +100 for deposit, -50 for withdrawal
+        /// </summary>
+        public decimal Apply() => Amount;
     }
 }

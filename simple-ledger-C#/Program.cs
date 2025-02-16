@@ -1,4 +1,6 @@
 
+using simple_ledger_C_.Models;
+
 namespace simple_ledger_C_
 {
     public class Program
@@ -8,6 +10,9 @@ namespace simple_ledger_C_
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSingleton<ILedgerRepository, LedgerRepository>();
+            builder.Services.AddSingleton<ITransactionService, TransactionService>();
+            builder.Services.AddSingleton<IBalanceService, BalanceService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
